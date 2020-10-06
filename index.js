@@ -190,11 +190,13 @@ function mouseClicked() {
     }
     else if (mode === gameScreen){ bird.jump() }
     else if (mode === gameOverScreen){
-        if(mouseX>=45 && mouseX<=(45+165) && mouseY>=630 && mouseY<=(630+60)){
+        if(mouseX>=45*pixelScaleX && mouseX<=((45+165)*pixelScaleX) && mouseY>=630*pixelScaleY && mouseY<=((630+60)*pixelScaleY)){
             setup()
             mode=welcomeScreen
         }
-        if(mouseX>=300 && mouseX<=(300+180) && mouseY>=630 && mouseY<=(630+60)){ screenshot() }
+        if(mouseX>=300*pixelScaleX && mouseX<=((300+180)*pixelScaleX) && mouseY>=630*pixelScaleY && mouseY<=((630+60)*pixelScaleY)){
+            screenshot()
+        }
     }
     else if (mode === winScreen){ }
 
