@@ -190,8 +190,11 @@ function mouseClicked() {
     }
     else if (mode === gameScreen){ bird.jump() }
     else if (mode === gameOverScreen){
-        setup()
-        mode=welcomeScreen
+        if(mouseX>=45 && mouseX<=(45+165) && mouseY>=630 && mouseY<=(630+60)){
+            setup()
+            mode=welcomeScreen
+        }
+        if(mouseX>=300 && mouseX<=(300+180) && mouseY>=630 && mouseY<=(630+60)){ screenshot() }
     }
     else if (mode === winScreen){ }
 
@@ -239,7 +242,7 @@ function playGame() {
     }
     base.draw()
     bird.draw()
-    fill(255, 255, 255)
+    fill(230,240,215)
     textSize(60*pixelScaleX)
     textAlign(CENTER)
     text("Score: "+score,250*pixelScaleX, 450*pixelScaleY)
@@ -248,12 +251,14 @@ function playGame() {
 function welcome() {
     image(BG_IMG, 0, 0, BG_IMG.width*scaleX, BG_IMG.height*scaleY)
     base.draw()
-    textSize(30*pixelScaleX);
-    textAlign(CENTER);
+    textAlign(CENTER)
+    noStroke()
+    fill(230,240,215)
+    textSize(40*pixelScaleX)
     text("Flappy Bird",250*pixelScaleX, 300*pixelScaleY);
     bird.draw()
-    fill(255, 255, 255);
-    textSize(60*pixelScaleX);
+    fill(230,240,215)
+    textSize(60*pixelScaleX)
     textAlign(CENTER);
     text("Click to Play",250*pixelScaleX, 450*pixelScaleY);
 
@@ -267,10 +272,31 @@ function gameOver(){
     bird.draw()
     textSize(70*pixelScaleX);
     textAlign(CENTER);
+    fill(230,240,215)
     text("Game Over",250*pixelScaleX, 450*pixelScaleY);
     text("Score: "+score,250*pixelScaleX, 300*pixelScaleY);
     textSize(30*pixelScaleX);
 
+    strokeWeight(0);
+    stroke(0)
+    fill(255,255,255,100)
+    rect(45*pixelScaleX, 630*pixelScaleY, 165*pixelScaleX, 60*pixelScaleY,20);
+    textAlign(CENTER,CENTER);
+    noStroke()
+    fill(80)
+    textSize(30*pixelScaleX);
+    text("Play Again",(45+(165/2))*pixelScaleX, (630+(60/2))*pixelScaleY);
+
+
+    strokeWeight(0);
+    stroke(0)
+    fill(255,255,255,100)
+    rect(300*pixelScaleX, 630*pixelScaleY, 180*pixelScaleX, 60*pixelScaleY,20)
+    textAlign(CENTER,CENTER);
+    noStroke()
+    fill(80)
+    textSize(30*pixelScaleX);
+    text("Screenshot",(300+(180/2))*pixelScaleX, (630+(60/2))*pixelScaleY);
 
 }
 function draw(){
@@ -278,4 +304,7 @@ function draw(){
     else if (mode === gameScreen){ playGame() }
     else if (mode === gameOverScreen){ gameOver()}
     else if (mode === winScreen){ }
+}
+function screenshot(){
+    save('FlappyBird.jpg')
 }
